@@ -1,0 +1,15 @@
+Game logic:
+The game has a stage with the tetromino cells and a player. React hooks was used to create them as it allows abstraction and, they can be reduced and composed together. The three custom hooks are:
+1.) usePlayer containing all the logic for the player
+2.) useStage containing all the logic for the stage
+3.) useGameStatus containing all the logic for handling the status of the game
+
+
+
+Challenges faced:
+Bug: A falling tetromino overlaps with an existing tetromino thus eating a portion of the existing tetromino.
+Solution: The new position in update_player_pos() in usePlayer.js was not being updated properly. Fixed it by changing the code from "pos: { x: (prev.pos.x += x), y: (prev.pos.y += y) }" to "pos: { x: prev.pos.x + x, y: prev.pos.y + y }".
+This also fixed the error "newStage[(y + player.pos.y)] is undefined". The error arose because newStage[(y + player.pos.y)] was probably going out-of-bounds.
+
+Optimization:
+All the cells were re-rendering over 240 times whenever a key was pressed. To re-render only the cells which I exported the Cell component using React.memo
