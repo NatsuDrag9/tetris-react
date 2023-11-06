@@ -13,3 +13,14 @@ This also fixed the error "newStage[(y + player.pos.y)] is undefined". The error
 
 Optimization:
 All the cells were re-rendering over 240 times whenever a key was pressed. To re-render only the cells which I exported the Cell component using React.memo
+
+-------------------------------------------------------------------------------------------------
+For github pages to build from public/, modify the "build" line to specify the output directory as "public" in package.json like this:
+"scripts": {
+  "start": "react-scripts start",
+  "build": "react-scripts build", // Change this line
+  "test": "react-scripts test",
+  "eject": "react-scripts eject"
+}
+
+"build": "react-scripts build && mv build public", // Modify this line
